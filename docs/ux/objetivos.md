@@ -1,1 +1,1 @@
-Qué problema del cliente debería resolver la plataforma y cómo sabrán si lo logró.
+Qué problema del cliente debería resolver la plataforma y cómo sabrán si lo logró. Jp
