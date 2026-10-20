@@ -134,3 +134,5 @@
 Sergio: Aprendimos a identificar problemas de usabilidad en una plataforma mediante una evaluación heurística. Comprendimos cómo clasificar los hallazgos según su severidad y frecuencia para establecer prioridades.
 
 Juan Pablo: Aprendí que una evaluación sirve más cuando se revisa una tarea completa como comprar dos boletos porque los problemas aparecen al pasar de una pantalla a otra casi siempre. Igual que tenemos que describir lo observamos y no dar opiniones y que priorizar ayuda a decidir qué es lo más importante por arreglar primero como el mapa de asientos de Cinépolis por ejemplo.
+
+Camila: Después de esta práctica aprendí la importancia de tomar en cuenta la experiencia del usuario al crear una página web. Pues haciendo uso de nuestras páginas más comunes no nos damos cuenta a veces de las fallas que estas pueden tener, pues las usamos seguidk y nos acostumbramos a ellas. Sin embargo detalles como lo confuso que puede ser elegir un lugar en cinepolis es una falla considerable. Por lo que concluyo con la importancia de notar la experiencia común del usuario con la interfaz de forma que sea comoda y fácil de entender y manejar. 
