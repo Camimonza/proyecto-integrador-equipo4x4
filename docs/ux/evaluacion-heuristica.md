@@ -132,3 +132,5 @@
 ## ¿Qué aprendimos?
 
 Sergio: Aprendimos a identificar problemas de usabilidad en una plataforma mediante una evaluación heurística. Comprendimos cómo clasificar los hallazgos según su severidad y frecuencia para establecer prioridades.
+
+Juan Pablo: Aprendí que una evaluación sirve más cuando se revisa una tarea completa como comprar dos boletos porque los problemas aparecen al pasar de una pantalla a otra casi siempre. Igual que tenemos que describir lo observamos y no dar opiniones y que priorizar ayuda a decidir qué es lo más importante por arreglar primero como el mapa de asientos de Cinépolis por ejemplo.
