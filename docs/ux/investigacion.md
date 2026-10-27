@@ -208,3 +208,4 @@ Los conteos marcados como "revisión propia" salen de revisar nuestro guion y el
 
 ## Que aprendimos
 * **[Valentina]:** Aprendí que la complejidad de una plataforma no solo se mide por el tiempo que toma una tarea, sino por la carga cognitiva que genera la navegación; por ejemplo, el usuario no notaba fallas en el CRM, pero le causaba fricción constante brincar entre múltiples pestañas para consultar una sola respuesta o un contacto.
+* **[Sergio]:** Aprendí que muchas veces los usuarios se acostumbran a las dificultades de un sistema y dejan de verlas como problemas, aunque les quiten tiempo y esfuerzo. También entendí la importancia de hacer preguntas de seguimiento y pedir ejemplos concretos para descubrir necesidades que no se expresan directamente. Esta experiencia me enseñó que, para proponer una mejora útil, primero debemos comprender cómo trabaja realmente el usuario y no asumir que conocemos su proceso.
