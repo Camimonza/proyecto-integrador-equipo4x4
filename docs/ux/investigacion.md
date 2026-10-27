@@ -189,8 +189,8 @@ Los conteos marcados como "revisión propia" salen de revisar nuestro guion y el
 | Qué observar | Conteo de veces | Ejemplo concreto |
 | :--- | :---: | :--- |
 | **Preguntas binarias** | 0 (revisión propia) | Ninguna pregunta del guion se puede contestar con sí o no. |
-| **Respuestas sugeridas** | Pendiente (jurado) | — |
-| **Silencios interrumpidos** | Pendiente (jurado) | — |
+| **Respuestas sugeridas** | 3 (por qué, cuándo, etc) | Se hicieron algunas preguntas para sacar más información valiosa. |
+| **Silencios interrumpidos** | 0 (sin interrupciones) | No se registraró ninguna interrupción al silencio el entrevistado fue libre para tomarse su tiempo con sus respuestas y aún así no hubo muchos silencios. |
 | **Preguntas de "por qué"** | 0 (revisión propia) | El guion no incluye ninguna y en el audio no se oyen repreguntas. Ejemplo perdido: tras "no tenía problemas con el CRM" no se preguntó "¿por qué crees eso?". |
 | **"Cuéntame de la última vez"** | 2 (revisión propia) | Preguntas 2.1 ("la última vez que tuviste que extraer un reporte") y 3.1 ("la ocasión más reciente en la que los datos venían incompletos"). |
 | **Guion seguido al pie de la letra** | Frecuente (revisión propia) | Las preguntas se hicieron en el orden del guion, una tras otra, sin profundizar en lo interesante, por ejemplo en la contradicción sobre los problemas del CRM. |
