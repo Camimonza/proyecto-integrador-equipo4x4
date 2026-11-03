@@ -3,7 +3,7 @@
 
 ## Archivo de Figma
 
-Liga al archivo de Figma: [Pegar aquí la liga de Figma]
+Liga al archivo de Figma:(https://www.figma.com/design/ziE5szvPhEv7ankqAN6T3V/2.-User-flow?node-id=0-1&t=c03LNvLjuiJSC9KR-1)
 
 El archivo contiene los sketches de las pantallas, el flujo de usuario y el mapa de sitio de la plataforma.
 
