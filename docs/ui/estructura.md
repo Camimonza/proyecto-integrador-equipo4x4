@@ -15,8 +15,21 @@ Muestra una vista general de los indicadores más importantes de la plataforma, 
 ### 2. Consulta de información
 Permite al usuario consultar los registros almacenados en el sistema y revisar información específica de acuerdo con sus necesidades.
 
+
 ### 3. Detalle de información
 Permite profundizar en los datos seleccionados y visualizar información más específica para facilitar su análisis.
+
+## 1. Sketches
+
+![image](image.png)
+
+## 2. User flow
+
+![image2](image-3.png)
+
+## 3. Sitemap
+
+![image3](image-2.png)
 
 ## Trazabilidad con UX
 
