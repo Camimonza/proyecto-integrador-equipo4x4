@@ -111,3 +111,48 @@ Se realizó una prueba de cinco segundos mostrando el dashboard a integrantes de
 - Revisar la consistencia visual entre las diferentes pantallas.
 - Verificar que los filtros, indicadores y gráficas mantengan una distribución clara y funcional.
 - Revisar los wireframes antes de comenzar con la implementación en Streamlit.
+
+# **Prototipo y pitch**
+
+## **Prototipo**
+
+https://www.figma.com/proto/ziE5szvPhEv7ankqAN6T3V/2.-User-flow?node-id=25-6&t=xBkyCxOYKnITGYBQ-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=25%3A10
+
+## **Prueba del prototipo**
+
+Tarea: "Llamar a un cliente con documentos erróneos"
+Probó: Francisco Martin Rivera Salgado - Integrante del equipo: Syntax
+
+### Dónde dudó
+- Al buscar el cliente y encontrar perfiles duplicados (uno activo y otro histórico), no estaba seguro de cuál debía seleccionar inicialmente.
+- No reconoció fácilmente las acciones principales porque el diseño no indicaba claramente que eran elementos interactivos.
+
+### Lo que dijo textual
+- "Sería cuestión de nada más estar seguro por qué se pueden duplicar los perfiles, pero fuera de eso entiendo que el que está activo es el que importa."
+- "A lo mejor cambiar el tipo del botón o como que no se ve muy botón [...] darle un igual blanco con un fondo con un margen más grueso."
+
+
+
+## **Sound bite**
+
+Frase ganadora:
+**"Toda tu operación en un solo vistazo, sin fricciones ni duplicados"**
+
+4 intentos previos:
+
+1. "Tus KPIs claros, tus decisiones seguras."
+
+2. "El control de tus sucursales y clientes, a un clic de distancia."
+
+3. "Menos dudas, más agilidad: la herramienta definitiva para tu equipo."
+
+4. "Datos precisos y perfiles únicos: simplifica tu operación diaria."
+
+
+## **Elevator pitch**
+
+¿Sabías que los equipos operativos pierden muchísimo tiempo buscando filtros de fechas o dudando sobre qué perfil de cliente seleccionar? Hoy, la confusión entre registros históricos y activos retrasa la resolución de tareas críticas. Nuestra plataforma resuelve esto centralizando tus KPIs y expedientes en una interfaz de negocio limpia e intuitiva, haciendo que las acciones a tomar sean evidentes al instante. A diferencia de los sistemas genéricos, diseñamos esta solución probando prototipos reales directamente con los usuarios finales para eliminar sus bloqueos exactos. Implementemos una prueba piloto la próxima semana para que tu equipo experimente esta agilidad de primera mano.
+
+## **Pendientes de diseno**
+- Aclarar la vista de resultados de búsqueda para diferenciar mejor los perfiles activos de los históricos o evitar mostrar duplicados confusos.
+- Rediseñar los botones para que se muestren más llamativos, modificando sus bordes, fondos o tipografía para que tengan una clara apariencia de botón interactivo.
