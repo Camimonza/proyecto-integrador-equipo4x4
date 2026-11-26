@@ -7,16 +7,10 @@ st.set_page_config(
     layout="wide",
 )
 
-# ---------------------------------------------------------
-# 1. TÍTULO DE LA PANTALLA (st.title)
-# ---------------------------------------------------------
 st.title("Dashboard de Control de Churn")
 st.caption("Corte: 31-May-2026")
 
-# ---------------------------------------------------------
-# 2. FILTROS SUPERIORES Y EN BARRA LATERAL
-# ---------------------------------------------------------
-# Barra lateral para cumplir con el requisito de la rúbrica ("with st.sidebar: + widgets")
+# Barra lateral 
 with st.sidebar:
     st.header("Filtros")
     periodo = st.selectbox(
@@ -28,7 +22,7 @@ with st.sidebar:
         "Asignado a CS (SAMU)", ["Todos", "Equipo A", "Equipo B"]
     )
 
-# Contenedor visual superior replicando exactamente el wireframe
+# Contenedor visual
 with st.container(border=True):
     f_col1, f_col2, f_col3, _ = st.columns([1.2, 1.2, 1.2, 1.4])
     with f_col1:
@@ -50,12 +44,9 @@ with st.container(border=True):
             key="top_cs",
         )
 
-# Tomamos el segmento seleccionado (priorizando el filtro superior)
+# Prioriza el filtro superior
 filtro_seg = segmento_top if segmento_top != "Todos" else segmento
 
-# ---------------------------------------------------------
-# 3. FILA DE INDICADORES (st.columns + st.metric)
-# ---------------------------------------------------------
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -96,9 +87,7 @@ with col4:
 
 st.write("")
 
-# ---------------------------------------------------------
-# 4. GRÁFICAS (st.plotly_chart)
-# ---------------------------------------------------------
+#graficas
 graf_col1, graf_col2 = st.columns(2)
 
 with graf_col1:
@@ -172,9 +161,7 @@ with graf_col2:
     )
     st.plotly_chart(fig_causas, use_container_width=True)
 
-# ---------------------------------------------------------
-# 5. TABLA Y 6. AGRUPACIÓN DEL DETALLE (st.tabs + st.dataframe)
-# ---------------------------------------------------------
+#tabla
 st.subheader("Top Cuentas Priorizadas para Intervención (PRS-01)")
 
 df_cuentas = pd.DataFrame({
