@@ -1,5 +1,4 @@
-﻿
-from dash import Dash, dcc, html
+﻿from dash import Dash, Input, Output, dcc, html
 from pathlib import Path
 import pandas as pd
 import plotly.express as px
@@ -9,7 +8,7 @@ app = Dash(__name__)
 # Colores
 FONDO = "#F4F6F9"
 TINTA = "#243247"
-AZUL = "#2878B5"
+GRIS = "#68778D"
 BLANCO = "#FFFFFF"
 
 # Estilos
@@ -36,116 +35,183 @@ ESTILO_TARJETA = {
     "minWidth": "180px"
 }
 
+ESTILO_FILTRO = {"flex": "1", "minWidth": "220px"}
+
 # Cargar datos
 RUTA = Path(__file__).parent.parent / "datos" / "ventas.csv"
 datos = pd.read_csv(RUTA, parse_dates=["fecha"])
 
+SUCURSALES = sorted(datos["sucursal"].unique())
+CATEGORIAS = sorted(datos["categoria"].unique())
+FECHA_MIN = datos["fecha"].min().date()
+FECHA_MAX = datos["fecha"].max().date()
 
-# Crear tarjetas KPI
-def tarjeta(titulo, valor):
+
+# Tarjeta KPI: solo tiene id, el callback le pone el valor
+def tarjeta(titulo, id_valor):
     return html.Div([
-        html.P(titulo, style={"color": "#68778D", "margin": "0"}),
-        html.H2(valor, style={"color": TINTA, "marginBottom": "0"})
+        html.P(titulo, style={"color": GRIS, "margin": "0"}),
+        html.H2(id=id_valor, style={"color": TINTA, "marginBottom": "0"})
     ], style=ESTILO_TARJETA)
 
 
 # Layout
 app.layout = html.Div([
 
-    html.H1(
-        "Tablero de ventas",
-        style={"color": TINTA}
-    ),
+    html.H1("Tablero de ventas", style={"color": TINTA}),
 
     html.P(
         "Abarrotera del Bajío - enero a octubre 2026",
-        style={"color": "#68778D"}
+        style={"color": GRIS}
     ),
 
-    html.H3("Filtrar por sucursal", style={"color": TINTA}),
+    # Filtros
+    html.Div([
 
-    dcc.Dropdown(
-        id="filtro-sucursal",
-        options=[
-            {"label": "Todas las sucursales", "value": "Todas"}
-        ] + [
-            {"label": sucursal, "value": sucursal}
-            for sucursal in sorted(datos["sucursal"].unique())
-        ],
-        value="Todas",
-        clearable=False,
-        style={"maxWidth": "400px", "marginBottom": "25px"}
-    ),
+        html.Div([
+            html.Label("Sucursal", style={"fontWeight": "600"}),
+            dcc.Dropdown(
+                id="filtro-sucursal",
+                options=SUCURSALES,
+                value=SUCURSALES,
+                multi=True,
+            ),
+        ], style=ESTILO_FILTRO),
+
+        html.Div([
+            html.Label("Categoría", style={"fontWeight": "600"}),
+            dcc.Dropdown(
+                id="filtro-categoria",
+                options=CATEGORIAS,
+                value=CATEGORIAS,
+                multi=True,
+            ),
+        ], style=ESTILO_FILTRO),
+
+        html.Div([
+            html.Label("Período", style={"fontWeight": "600"}),
+            html.Div(
+                dcc.DatePickerRange(
+                    id="filtro-periodo",
+                    min_date_allowed=FECHA_MIN,
+                    max_date_allowed=FECHA_MAX,
+                    start_date=FECHA_MIN,
+                    end_date=FECHA_MAX,
+                    display_format="DD/MM/YYYY",
+                ),
+            ),
+        ], style=ESTILO_FILTRO),
+
+    ], style=ESTILO_FILA),
+
+    # Aviso de selección vacía (lo llena el callback solo cuando hace falta)
+    html.Div(id="aviso-vacio"),
 
     # Indicadores
     html.Div([
-        tarjeta("Ingresos totales", f"${datos['importe'].sum():,.2f}"),
-        tarjeta("Unidades vendidas", f"{datos['unidades'].sum():,.0f}"),
-        tarjeta(
-            "Importe promedio",
-            f"${datos['importe'].mean():,.2f}"
-        ),
-        tarjeta(
-            "Días con venta",
-            f"{datos['fecha'].nunique():,.0f}"
-        )
+        tarjeta("Ingresos totales", "kpi-ingresos"),
+        tarjeta("Unidades vendidas", "kpi-unidades"),
+        tarjeta("Importe promedio", "kpi-promedio"),
+        tarjeta("Días con venta", "kpi-dias"),
     ], style=ESTILO_FILA),
 
-    # Gráfica de ingresos diarios
+    # Gráfica ancha
+    html.Div(
+        dcc.Graph(id="grafica-linea"),
+        style={**ESTILO_TARJETA, "marginBottom": "25px"}
+    ),
+
+    # Dos gráficas lado a lado
     html.Div([
-        dcc.Graph(
-            id="grafica-diaria",
-            figure=px.line(
-                datos.groupby("fecha", as_index=False)["importe"].sum(),
-                x="fecha",
-                y="importe",
-                title="Ingresos por día",
-                labels={
-                    "fecha": "Fecha",
-                    "importe": "Ingresos ($)"
-                }
-            )
-        )
-    ], style=ESTILO_TARJETA),
-
-    # Gráficas por categoría y sucursal
-    html.Div([
-
-        html.Div([
-            dcc.Graph(
-                id="grafica-categoria",
-                figure=px.bar(
-                    datos.groupby("categoria", as_index=False)["importe"].sum(),
-                    x="categoria",
-                    y="importe",
-                    title="Ingresos por categoría",
-                    labels={
-                        "categoria": "Categoría",
-                        "importe": "Ingresos ($)"
-                    }
-                )
-            )
-        ], style={"flex": "1", "minWidth": "300px"}),
-
-        html.Div([
-            dcc.Graph(
-                id="grafica-sucursal",
-                figure=px.bar(
-                    datos.groupby("sucursal", as_index=False)["importe"].sum(),
-                    x="sucursal",
-                    y="importe",
-                    title="Ingresos por sucursal",
-                    labels={
-                        "sucursal": "Sucursal",
-                        "importe": "Ingresos ($)"
-                    }
-                )
-            )
-        ], style={"flex": "1", "minWidth": "300px"})
-
-    ], style=ESTILO_FILA)
+        html.Div(dcc.Graph(id="grafica-categoria"), style=ESTILO_TARJETA),
+        html.Div(dcc.Graph(id="grafica-sucursal"), style=ESTILO_TARJETA),
+    ], style=ESTILO_FILA),
 
 ], style=ESTILO_PAGINA)
+
+
+# Un solo callback para todo el tablero.
+# Orden de los Input = orden de los argumentos de la función.
+# Orden de los Output = orden de los valores del return.
+@app.callback(
+    Output("kpi-ingresos", "children"),
+    Output("kpi-unidades", "children"),
+    Output("kpi-promedio", "children"),
+    Output("kpi-dias", "children"),
+    Output("grafica-linea", "figure"),
+    Output("grafica-categoria", "figure"),
+    Output("grafica-sucursal", "figure"),
+    Output("aviso-vacio", "children"),
+    Input("filtro-sucursal", "value"),
+    Input("filtro-categoria", "value"),
+    Input("filtro-periodo", "start_date"),
+    Input("filtro-periodo", "end_date"),
+)
+def actualizar(sucursales, categorias, inicio, fin):
+    # Si el usuario borra todo, el value puede llegar vacío o como None
+    sucursales = sucursales or []
+    categorias = categorias or []
+    inicio = pd.to_datetime(inicio) if inicio else pd.Timestamp(FECHA_MIN)
+    fin = pd.to_datetime(fin) if fin else pd.Timestamp(FECHA_MAX)
+
+    filtrados = datos[
+        datos["sucursal"].isin(sucursales)
+        & datos["categoria"].isin(categorias)
+        & datos["fecha"].between(inicio, fin)
+    ]
+
+    # Salida anticipada: mismos 8 valores que el return normal
+    if filtrados.empty:
+        vacia = px.scatter(title="Sin datos para los filtros seleccionados")
+        aviso = html.Div(
+            "No hay datos con esos filtros. Amplía la selección.",
+            style={"backgroundColor": "#FFF4E0", "color": "#A35E00",
+                   "padding": "12px 16px", "borderRadius": "6px",
+                   "marginBottom": "16px", "fontWeight": "600"},
+        )
+        return "—", "—", "—", "—", vacia, vacia, vacia, aviso
+
+    # Indicadores
+    ingresos = filtrados["importe"].sum()
+    unidades = int(filtrados["unidades"].sum())
+    promedio = ingresos / len(filtrados)
+    dias = filtrados["fecha"].nunique()
+
+    # Gráficas
+    por_dia = filtrados.groupby("fecha", as_index=False)["importe"].sum()
+    fig_linea = px.line(
+        por_dia, x="fecha", y="importe",
+        title="Ingresos por día",
+        labels={"fecha": "Fecha", "importe": "Ingresos ($)"}
+    )
+
+    por_cat = filtrados.groupby("categoria", as_index=False)["importe"].sum()
+    fig_cat = px.bar(
+        por_cat, x="categoria", y="importe",
+        title="Ingresos por categoría",
+        labels={"categoria": "Categoría", "importe": "Ingresos ($)"}
+    )
+
+    por_suc = filtrados.groupby("sucursal", as_index=False)["importe"].sum()
+    fig_suc = px.bar(
+        por_suc, x="sucursal", y="importe",
+        title="Ingresos por sucursal",
+        labels={"sucursal": "Sucursal", "importe": "Ingresos ($)"}
+    )
+
+    for f in (fig_linea, fig_cat, fig_suc):
+        f.update_layout(margin=dict(l=10, r=10, t=50, b=10))
+
+    return (
+        f"${ingresos:,.2f}",
+        f"{unidades:,}",
+        f"${promedio:,.2f}",
+        f"{dias}",
+        fig_linea,
+        fig_cat,
+        fig_suc,
+        None,  # sin aviso cuando sí hay datos
+    )
 
 
 if __name__ == "__main__":
